@@ -762,7 +762,9 @@ func (g *schemaGenerator) generateTypeInline(
 					return nil, err
 				}
 			}
-
+			if typeShouldBePointer {
+				return codegen.WrapTypeInPointer(codegen.ArrayType{Type: theType}), nil
+			}
 			return &codegen.ArrayType{Type: theType}, nil
 		}
 	}
